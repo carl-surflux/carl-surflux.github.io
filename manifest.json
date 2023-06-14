@@ -1,32 +1,32 @@
 {
-    "name": "gps_log",
-    "short_name": "gps_log",
+    "name": "GPS LOG",
+    "short_name": "GPS LOG: Follow you",
     "start_url": ".",
     "display": "standalone",
     "background_color": "#0175C2",
     "theme_color": "#0175C2",
-    "description": "A new Flutter project.",
+    "description": "gps logger follow you",
     "orientation": "portrait-primary",
     "prefer_related_applications": false,
     "icons": [
         {
-            "src": "icons/Icon-192.png",
+            "src": "icons/gps_log_icon_192.png",
             "sizes": "192x192",
             "type": "image/png"
         },
         {
-            "src": "icons/Icon-512.png",
+            "src": "icons/gps_log_icon_512.png",
             "sizes": "512x512",
             "type": "image/png"
         },
         {
-            "src": "icons/Icon-maskable-192.png",
+            "src": "icons/gps_log_icon_192.png",
             "sizes": "192x192",
             "type": "image/png",
             "purpose": "maskable"
         },
         {
-            "src": "icons/Icon-maskable-512.png",
+            "src": "icons/gps_log_icon_512.png",
             "sizes": "512x512",
             "type": "image/png",
             "purpose": "maskable"
