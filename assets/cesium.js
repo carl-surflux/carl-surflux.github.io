@@ -83,6 +83,7 @@ const options = {
 };
 
 if (navigator.geolocation) {
+    alert('hello')
     // ios simulator 에서는 Features > Location 에 None 이 아닌 위치가 잡혀야 나온다
     navigator.geolocation.watchPosition(showPosition, err, options);
 } else {
