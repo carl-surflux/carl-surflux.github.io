@@ -57,9 +57,15 @@ function err(err) {
     console.log('err! : ', err)
 }
 
+const options = {
+    enableHighAccuracy: true,
+    timeout: 30000,
+    maximumAge: 0,
+};
+
 if (navigator.geolocation) {
     // ios simulator 에서는 Features > Location 에 None 이 아닌 위치가 잡혀야 나온다
-    navigator.geolocation.getCurrentPosition(showPosition, err);
+    navigator.geolocation.watchPosition(showPosition, err, options);
 } else {
     alert("Geolocation is not supported by this browser.");
     console.log("Geolocation is not supported by this browser.");
