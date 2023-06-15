@@ -2,7 +2,7 @@
 var viewer = new Cesium.Viewer('cesiumContainer', {
     baseLayerPicker: false,
     baseLayer: new Cesium.ImageryLayer(new Cesium.OpenStreetMapImageryProvider({
-        url: 'http://13.125.197.106/hot/'
+        url: 'https://tile.surflux.studio/hot/'
     })),
 });
 viewer.animation.destroy()
