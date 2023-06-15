@@ -5,6 +5,7 @@ var viewer = new Cesium.Viewer('cesiumContainer', {
         url: 'https://tile.surflux.studio/hot/'
     })),
 });
+// remove toolbar
 viewer.animation.destroy()
 viewer.homeButton.destroy()
 viewer.navigationHelpButton.destroy()
@@ -16,21 +17,38 @@ viewer.infoBox.destroy()
 viewer.sceneModePicker.destroy()
 viewer.timeline.destroy()
 
-
+// set zoom level
 viewer.scene.screenSpaceCameraController.maximumZoomDistance = 3000;
 viewer.scene.screenSpaceCameraController.minimumZoomDistance = 100;
 
-let label;
+// set default camera
+// 사무실 126.8257072, 37.5678755
+let pointer = viewer.entities.add({
+    position: Cesium.Cartesian3.fromDegrees(126.8257072, 37.5678755),
+    label: {
+        text: "*",
+        scale: 1,
+        pixelOffset: new Cesium.Cartesian2(0, 0),
+        font: "32px Helvetica",
+        fillColor: Cesium.Color.YELLOW,
+        outlineColor: Cesium.Color.BLACK,
+        outlineWidth: 2,
+        style: Cesium.LabelStyle.FILL_AND_OUTLINE,
+    }
+});
+
+viewer.scene.camera.setView({
+    destination : Cesium.Cartesian3.fromDegrees(126.8257072, 37.5678755, 2000)
+});
+
+// change current position
 function showPosition(position) {
-    // 사무실 126.8257072, 37.5678755
     const longitude = position.coords.longitude;
     const latitude = position.coords.latitude;
 
-    if(label){
-        viewer.entities.remove(label);
-    }
+    viewer.entities.remove(pointer);
 
-    label = viewer.entities.add({
+    pointer = viewer.entities.add({
         position: Cesium.Cartesian3.fromDegrees(longitude, latitude),
         label: {
             text: "*",
@@ -44,13 +62,14 @@ function showPosition(position) {
         }
     });
 
-    viewer.scene.camera.setView({
-        destination : Cesium.Cartesian3.fromDegrees(longitude, latitude,  2000)
-    });
+    // 현재 높이
+    var cameraPosition = viewer.scene.camera.positionWC;
+    var ellipsoidPosition = viewer.scene.globe.ellipsoid.scaleToGeodeticSurface(cameraPosition);
+    var height = Cesium.Cartesian3.magnitude(Cesium.Cartesian3.subtract(cameraPosition, ellipsoidPosition, new Cesium.Cartesian3()));
 
-    // viewer.camera.flyTo({
-    //     destination : Cesium.Cartesian3.fromDegrees(longitude, latitude,  10000)
-    // });
+    viewer.scene.camera.setView({
+        destination : Cesium.Cartesian3.fromDegrees(longitude, latitude, height)
+    });
 }
 
 function err(err) {
