@@ -43,8 +43,10 @@ viewer.scene.camera.setView({
 
 // change current position
 function showPosition(position) {
+    alert('show me position')
     const longitude = position.coords.longitude;
     const latitude = position.coords.latitude;
+    alert(`lon : ${longitude}, lat: ${latitude}`)
 
     viewer.entities.remove(pointer);
 
@@ -73,6 +75,7 @@ function showPosition(position) {
 }
 
 function err(err) {
+    alert('err! : ', err)
     console.log('err! : ', err)
 }
 
@@ -83,7 +86,7 @@ const options = {
 };
 
 if (navigator.geolocation) {
-    alert('hello')
+    
     // ios simulator 에서는 Features > Location 에 None 이 아닌 위치가 잡혀야 나온다
     navigator.geolocation.watchPosition(showPosition, err, options);
 } else {
