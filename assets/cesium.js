@@ -94,4 +94,4 @@ setTimeout(() => {
         // console.log("Geolocation is not supported by this browser.");
     }
 
-}, 2000)
+}, 3000)
