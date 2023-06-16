@@ -27,16 +27,17 @@
 
   <script>
     // The value below is injected by flutter build, do not touch.
-    var serviceWorkerVersion = '2080285157';
+    var serviceWorkerVersion = "2832724513";
   </script>
   <!-- This script adds the flutter initialization JS code -->
   <script src="flutter.js" defer></script>
+  <script src="assets/cesium.js" defer></script>
 </head>
 <body>
-  <div id="cesiumContainer" class="fullSize"></div>
-  <div id="toolbar"></div>
-  <script src="assets/cesium.js"></script>
-  <!-- <script>
+  <!-- <div id="cesiumContainer" class="fullSize"></div> -->
+  <!-- <div id="toolbar"></div> -->
+  
+  <script>
     window.addEventListener('load', function(ev) {
       // Download main.dart.js
       _flutter.loader.loadEntrypoint({
@@ -44,12 +45,13 @@
           serviceWorkerVersion: serviceWorkerVersion,
         },
         onEntrypointLoaded: function(engineInitializer) {
-          engineInitializer.initializeEngine().then(function(appRunner) {
-            appRunner.runApp();
-          });
+          engineInitializer.initializeEngine()
+            .then(function(appRunner) {
+              appRunner.runApp();
+            });
         }
       });
     });
-  </script> -->
+  </script>
 </body>
 </html>
