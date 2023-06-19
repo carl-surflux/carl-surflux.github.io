@@ -45,7 +45,7 @@ try {
 
     // change current position
     function showPosition(position) {
-        // alert('show me position')
+        alert('show me position')
         const longitude = position.coords.longitude;
         const latitude = position.coords.latitude;
 
