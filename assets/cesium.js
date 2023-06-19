@@ -1,5 +1,5 @@
 setTimeout(() => {
-
+try {
     // Create a new CesiumJS application.
     var viewer = new Cesium.Viewer('cesiumContainer', {
         baseLayerPicker: false,
@@ -45,7 +45,7 @@ setTimeout(() => {
 
     // change current position
     function showPosition(position) {
-        alert('show me position')
+        // alert('show me position')
         const longitude = position.coords.longitude;
         const latitude = position.coords.latitude;
 
@@ -94,4 +94,7 @@ setTimeout(() => {
         // console.log("Geolocation is not supported by this browser.");
     }
 
+} catch (err) {
+    alert(err)
+}
 }, 3000)
