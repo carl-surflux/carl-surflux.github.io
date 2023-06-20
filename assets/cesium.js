@@ -1,12 +1,13 @@
-setTimeout(() => {
-try {
+function goCesium() {
+
     // Create a new CesiumJS application.
     var viewer = new Cesium.Viewer('cesiumContainer', {
         baseLayerPicker: false,
-        baseLayer: new Cesium.ImageryLayer(new Cesium.OpenStreetMapImageryProvider({
-            url: 'https://tile.surflux.studio/hot/'
-        })),
+            baseLayer: new Cesium.ImageryLayer(new Cesium.OpenStreetMapImageryProvider({
+                url: 'https://tile.surflux.studio/hot/'
+            })),
     });
+
     // remove toolbar
     viewer.animation.destroy()
     viewer.homeButton.destroy()
@@ -45,7 +46,7 @@ try {
 
     // change current position
     function showPosition(position) {
-        alert('show me position')
+        // alert('show me position')
         const longitude = position.coords.longitude;
         const latitude = position.coords.latitude;
 
@@ -94,7 +95,4 @@ try {
         // console.log("Geolocation is not supported by this browser.");
     }
 
-} catch (err) {
-    alert(err)
 }
-}, 3000)
