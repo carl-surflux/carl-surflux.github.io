@@ -27,10 +27,50 @@
 
   <script>
     // The value below is injected by flutter build, do not touch.
-    var serviceWorkerVersion = "2008831407";
+    var serviceWorkerVersion = "1284664894";
   </script>
   <!-- This script adds the flutter initialization JS code -->
   <script src="flutter.js" defer></script>
+  
+  <script src="https://cdn.jsdelivr.net/npm/idb@7/build/umd.js"></script>
+  <script>
+    ;(async function () {
+      window.db = await idb.openDB("map", 2, {
+          upgrade(db) {
+              const store = db.createObjectStore("tiles", {
+                  keyPath: "id",
+              });
+              store.createIndex("latIdx", "latIdx");
+              store.createIndex("lonIdx", "lonIdx");
+              postMessage("DB Upgraded");
+          },
+      });
+
+      const tx = db.transaction("tiles", "readwrite");
+      const tiles = await tx.store.getAll();
+      const updatePromises = tiles.map((tile) => {
+          tile.isRendered = false;
+          return tx.store.put(tile);
+      });
+      Promise.all([...updatePromises, tx.done]);
+    })();
+
+    async function waitDB() {
+      // console.log(db);
+      if (!db) {
+          await wait();
+          if (!db)
+              await waitDB();
+      }
+    }
+    function wait() {
+      return new Promise(resolve => {
+          setTimeout(() => {
+              resolve(true);
+          }, 100);
+      });
+    }
+  </script>
   <script src="assets/cesium.js" defer></script>
 </head>
 <body>
