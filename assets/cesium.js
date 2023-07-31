@@ -319,13 +319,16 @@ async function renderSurroundings(currentTile) {
 }
 
 function receiveMessage(event) {
+    document.getElementById('hello').innerText = event.data;
     event.source.postMessage(
-      `안녕 ${event.data}, 난 자식이야`,
-      '*',
+      `안녕 ${event.data}, 난 자식이야 source`,
+      '*'
     );
-  }
-  
-  window.addEventListener("message", receiveMessage, false);
+
+    window.parent.postMessage(`안녕 ${event.data}, 난 자식이야`,'*');
+}
+
+window.addEventListener("message", receiveMessage, false);
 
 
-
+ 
