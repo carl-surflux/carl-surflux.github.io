@@ -319,12 +319,12 @@ async function renderSurroundings(currentTile) {
 }
 
 function receiveMessage(event) {
-    event.source.postMessage(
-      `안녕 ${event.data}, 난 자식이야 source`,
-      '*'
-    );
+    // event.source.postMessage(
+    //   `안녕 ${event.data}, 난 자식이야 source`,
+    //   '*'
+    // );
 
-    // window.parent.postMessage(`안녕 ${event.data}, 난 자식이야`,'*');
+    window.parent.postMessage(`안녕 ${event.data}, 난 자식이야`,'*');
 }
 
 window.addEventListener("message", receiveMessage, false);
