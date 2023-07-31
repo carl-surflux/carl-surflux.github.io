@@ -202,6 +202,8 @@ function findMe() {
     viewer.camera.flyTo({
         destination : Cesium.Cartesian3.fromDegrees(longitude, latitude, height)
     });
+
+    window.parent && window.parent.postMessage('찾았다!','*');
 }
 
 async function getData() {
@@ -316,7 +318,14 @@ async function renderSurroundings(currentTile) {
     previousTile = currentTile;
 }
 
-
+function receiveMessage(event) {
+    event.source.postMessage(
+      `안녕 ${event.data}, 난 자식이야`,
+      '*',
+    );
+  }
+  
+  window.addEventListener("message", receiveMessage, false);
 
 
 
